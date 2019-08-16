@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Testimonials</title>
+  <style>
+    body { background: #dfe4ea; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+    .slider { width: 400px; text-align: center; }
+    .testimonial { display: none; }
+    .testimonial.active { display: block; animation: fade 1s; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    button { margin: 10px; padding: 8px 16px; background: #00d2d3; color: white; border: none; border-radius: 50px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="testimonial active">"Great product!" - John</div>
+    <div class="testimonial">"Highly recommend!" - Jane</div>
+    <div class="testimonial">"Amazing service!" - Bob</div>
+    <button onclick="prev()">Prev</button>
+    <button onclick="next()">Next</button>
+  </div>
+  <script>
+    let idx = 0;
+    const items = document.querySelectorAll('.testimonial');
+    function show(n) {
+      items.forEach(i => i.classList.remove('active'));
+      items[n].classList.add('active');
+    }
+    function next() { idx = (idx + 1) % items.length; show(idx); }
+    function prev() { idx = (idx - 1 + items.length) % items.length; show(idx); }
+  </script>
+</body>
+</html>
